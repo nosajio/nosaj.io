@@ -1,5 +1,7 @@
 import { notFound } from "next/navigation";
 import { getPostSlugs, getCachedPostBySlug } from "@/lib/blog";
+import { Metadata } from "next";
+import { ComponentType } from "react";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -10,7 +12,9 @@ export async function generateStaticParams() {
   return slugs.map((slug) => ({ slug }));
 }
 
-export async function generateMetadata({ params }: PageProps) {
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const post = await getCachedPostBySlug(slug);
 
@@ -32,7 +36,13 @@ export default async function PostPage({ params }: PageProps) {
     notFound();
   }
 
-  const { default: PostContent } = await import(`@/../blog/${slug}.mdx`);
+  let PostContent: ComponentType;
+  try {
+    ({ default: PostContent } = await import(`@/../blog/${slug}.mdx`));
+  } catch (error: unknown) {
+    console.error("Error loading blog post content", error);
+    notFound();
+  }
 
   return (
     <article>
