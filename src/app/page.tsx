@@ -3,7 +3,7 @@ import { format } from "date-fns/format";
 import Link from "next/link";
 
 export default async function Home() {
-  const posts = await getPosts();
+  const posts = getPosts();
 
   return (
     <main className="flex flex-col gap-8">
@@ -17,7 +17,7 @@ export default async function Home() {
       {/* Blog posts */}
       <section className="container">
         <h2 className="font-medium text-neutral-600">Blog</h2>
-        <ul className="w-full flex flex-col gap-y-3 mt-3">
+        <ul className="mt-3 flex w-full flex-col gap-y-3">
           {posts.map((p) => (
             <li className="flex font-medium" key={p.slug}>
               <Link className="grow" href={`/blog/${p.slug}`}>
