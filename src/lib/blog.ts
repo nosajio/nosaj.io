@@ -9,7 +9,7 @@ const BLOG_DIR = path.join(process.cwd(), "blog");
 /**
  * Get all posts from the blog directory
  */
-export async function getPosts() {
+export function getPosts() {
   const posts = [
     {
       title: "Three ways to ship",
