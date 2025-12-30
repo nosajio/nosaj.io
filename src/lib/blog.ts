@@ -7,6 +7,40 @@ import type { Post } from "./types";
 const BLOG_DIR = path.join(process.cwd(), "blog");
 
 /**
+ * Get all posts from the blog directory
+ */
+export async function getPosts() {
+  const posts = [
+    {
+      title: "Three ways to ship",
+      slug: "three-ways-to-ship",
+      date: new Date("01 December 2025"),
+    },
+    {
+      title: "Vibe coding with vim",
+      slug: "vibe-coding-with-vim",
+      date: new Date("01 December 2025"),
+    },
+    {
+      title: "Holistic feature design",
+      slug: "feature-design",
+      date: new Date("01 November 2025"),
+    },
+    {
+      title: "Thank you PHP",
+      slug: "php",
+      date: new Date("01 October 2025"),
+    },
+    {
+      title: "Infinite soup",
+      slug: "infinite-soup",
+      date: new Date("01 October 2025"),
+    },
+  ];
+  return posts;
+}
+
+/**
  * Get all MDX post slugs from the blog directory
  */
 export function getPostSlugs(): string[] {
@@ -43,7 +77,9 @@ export function getPostBySlug(slug: string): Post | null {
   return {
     slug,
     title: data.title ?? slug,
-    date: data.date ? new Date(data.date).toISOString() : new Date().toISOString(),
+    date: data.date
+      ? new Date(data.date).toISOString()
+      : new Date().toISOString(),
     tags: Array.isArray(data.tags) ? data.tags : [],
     excerpt: data.excerpt,
     content,
@@ -67,7 +103,7 @@ export function getAllPosts(): Post[] {
 export const getCachedPosts = unstable_cache(
   async () => getAllPosts(),
   ["blog-posts"],
-  { revalidate: 3600 }
+  { revalidate: 3600 },
 );
 
 /**
@@ -76,5 +112,5 @@ export const getCachedPosts = unstable_cache(
 export const getCachedPostBySlug = unstable_cache(
   async (slug: string) => getPostBySlug(slug),
   ["blog-post"],
-  { revalidate: 3600 }
+  { revalidate: 3600 },
 );
