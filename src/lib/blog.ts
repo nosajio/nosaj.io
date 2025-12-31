@@ -10,31 +10,41 @@ const BLOG_DIR = path.join(process.cwd(), "blog");
  * Get all posts from the blog directory
  */
 export function getPosts() {
-  const posts = [
+  const posts: Post[] = [
     {
       title: "Three ways to ship",
       slug: "three-ways-to-ship",
-      date: new Date("01 December 2025"),
+      date: new Date("01 December 2025").toISOString(),
+      content: "",
+      tags: [],
     },
     {
       title: "Vibe coding with vim",
       slug: "vibe-coding-with-vim",
-      date: new Date("01 December 2025"),
+      date: new Date("01 December 2025").toISOString(),
+      content: "",
+      tags: [],
     },
     {
       title: "Holistic feature design",
       slug: "feature-design",
-      date: new Date("01 November 2025"),
+      date: new Date("01 November 2025").toISOString(),
+      content: "",
+      tags: [],
     },
     {
       title: "Thank you PHP",
       slug: "php",
-      date: new Date("01 October 2025"),
+      date: new Date("01 October 2025").toISOString(),
+      content: "",
+      tags: [],
     },
     {
       title: "Infinite soup",
       slug: "infinite-soup",
-      date: new Date("01 October 2025"),
+      date: new Date("01 October 2025").toISOString(),
+      content: "",
+      tags: [],
     },
   ];
   return posts;

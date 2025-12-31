@@ -1,30 +1,22 @@
+import { PostsList } from "@/components/posts-list";
 import { SocialIcon } from "@/components/socials";
 import { getPosts } from "@/lib/blog";
-import { format } from "date-fns/format";
 import Link from "next/link";
 
 const socials = [
   {
     key: "x",
     href: "https://x.com/nosajio",
-    icon: (
-      <SocialIcon
-        icon="x"
-        className="[&>path]:transition-all hover:[&>path]:-translate-y-0.5"
-      />
-    ),
+    icon: <SocialIcon icon="x" />,
   },
   {
     key: "github",
     href: "https://github.com/nosajio",
-    icon: (
-      <SocialIcon
-        icon="github"
-        className="[&>path]:transition-all hover:[&>path]:-translate-y-0.5"
-      />
-    ),
+    icon: <SocialIcon icon="github" />,
   },
 ];
+
+const HOME_POST_COUNT = 3;
 
 export default async function Home() {
   const posts = getPosts();
@@ -41,7 +33,12 @@ export default async function Home() {
       {/* Connect */}
       <section className="container grid auto-cols-[24px] grid-flow-col gap-x-4">
         {socials.map((s) => (
-          <Link key={s.key} href={s.href} target="_blank">
+          <Link
+            key={s.key}
+            href={s.href}
+            target="_blank"
+            className="flex size-6 items-center justify-center rounded-sm border border-transparent hover:border-neutral-400"
+          >
             {s.icon}
           </Link>
         ))}
@@ -50,21 +47,7 @@ export default async function Home() {
       {/* Blog posts */}
       <section className="container">
         <h2 className="font-medium text-neutral-400">Blog</h2>
-        <ul className="mt-3 flex w-full flex-col gap-y-3">
-          {posts.map((p) => (
-            <li className="font-medium" key={p.slug}>
-              <Link
-                className="flex [&>.title]:transition-all hover:[&>.title]:translate-x-2"
-                href={`/blog/${p.slug}`}
-              >
-                <span className="title grow">{p.title}</span>
-                <span className="shrink font-normal text-neutral-400">
-                  {format(p.date, "MMM yy")}
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <PostsList posts={posts} truncate={HOME_POST_COUNT} />
       </section>
 
       {/* Work */}
