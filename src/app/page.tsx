@@ -1,7 +1,10 @@
 import { PostsList } from "@/components/posts-list";
 import { SocialIcon } from "@/components/socials";
 import { getPosts } from "@/lib/blog";
+import { format } from "date-fns";
+import Image from "next/image";
 import Link from "next/link";
+import { CSSProperties } from "react";
 
 const socials = [
   {
@@ -13,6 +16,78 @@ const socials = [
     key: "github",
     href: "https://github.com/nosajio",
     icon: <SocialIcon icon="github" />,
+  },
+];
+
+const work = [
+  {
+    key: "browserbase",
+    image: {
+      width: 9,
+      height: 14.4,
+      color: "#F03603",
+    },
+    company: "Browserbase",
+    title: "Technical Lead",
+    dates: {
+      start: new Date("2024-03-01"),
+    },
+  },
+  {
+    key: "sprinterview",
+    image: {
+      width: 34,
+      height: 12,
+      color: "#000000",
+    },
+    company: "Sprinterview",
+    title: "Founder",
+    dates: {
+      start: new Date("2023-01-01"),
+      end: new Date("2024-01-01"),
+    },
+  },
+  {
+    key: "frontier",
+    image: {
+      width: 22,
+      height: 22,
+      color: "#039958",
+    },
+    company: "Frontier",
+    title: "Engineering Lead",
+    dates: {
+      start: new Date("2020-04-01"),
+      end: new Date("2022-06-01"),
+    },
+  },
+  {
+    key: "pave",
+    image: {
+      width: 18,
+      height: 16,
+      color: "#235CF2",
+    },
+    company: "Pave",
+    title: "Design & Engineering",
+    dates: {
+      start: new Date("2019-12-28"),
+      end: new Date("2020-06-01"),
+    },
+  },
+  {
+    key: "tradespace",
+    image: {
+      width: 10,
+      height: 16,
+      color: "#126BFB",
+    },
+    company: "Tradespace",
+    title: "Design & Engineering",
+    dates: {
+      start: new Date("2018-09-01"),
+      end: new Date("2020-02-28"),
+    },
   },
 ];
 
@@ -46,11 +121,39 @@ export default async function Home() {
 
       {/* Blog posts */}
       <section className="container">
-        <h2 className="font-medium text-sm text-neutral-400">Blog</h2>
+        <h2 className="text-sm font-medium text-neutral-400">Blog</h2>
         <PostsList posts={posts} truncate={HOME_POST_COUNT} />
       </section>
 
       {/* Work */}
+      <section className="container">
+        <h2 className="text-sm font-medium text-neutral-400">Work</h2>
+        <ul className="mt-3 flex flex-col gap-y-3.5">
+          {work.map((w) => (
+            <li
+              key={w.key}
+              className="grid grid-flow-col grid-cols-[34px_1fr_min-content] items-center gap-3.5"
+              style={{ "--background-color": w.image.color } as CSSProperties}
+            >
+              <div className="corner-shape-squircle flex size-[34px] items-center justify-center rounded-xl bg-(--background-color)">
+                <Image
+                  src={`/work/${w.key}-logo.svg`}
+                  alt={w.company}
+                  width={w.image.width}
+                  height={w.image.height}
+                />
+              </div>
+              <span className="flex gap-x-3.5 font-medium">
+                <h3 className="text-neutral-800">{w.company}</h3>
+                <h4 className="text-neutral-400">{w.title}</h4>
+              </span>
+              <span className="text-sm whitespace-nowrap text-neutral-400">
+                {!("end" in w.dates) ? "Now" : format(w.dates.start, "MMM yy")}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </section>
     </main>
   );
 }

@@ -13,6 +13,17 @@
   max-width: var(--container-max-width);
 }
 
+@utility corner-shape-* {
+  corner-shape: --value(
+    "bevel",
+    "notch",
+    "round",
+    "scoop",
+    "square",
+    "squircle"
+  );
+}
+
 body {
   color: var(--color-neutral-950);
 }
