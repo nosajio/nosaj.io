@@ -128,14 +128,17 @@ export default async function Home() {
       {/* Work */}
       <section className="container">
         <h2 className="text-sm font-medium text-neutral-400">Work</h2>
-        <ul className="mt-3 flex flex-col gap-y-3.5">
+        <ul className="mt-3 grid auto-rows-auto grid-cols-[34px_max-content_1fr_max-content] gap-3.5">
           {work.map((w) => (
             <li
               key={w.key}
-              className="grid grid-flow-col grid-cols-[34px_1fr_min-content] items-center gap-3.5"
+              className="col-span-full grid grid-cols-subgrid items-center"
               style={{ "--background-color": w.image.color } as CSSProperties}
             >
-              <div className="corner-shape-squircle flex size-[34px] items-center justify-center rounded-xl bg-(--background-color)">
+              <div
+                role="img"
+                className="corner-shape-squircle flex size-[34px] items-center justify-center rounded-xl bg-(--background-color)"
+              >
                 <Image
                   src={`/work/${w.key}-logo.svg`}
                   alt={w.company}
@@ -143,10 +146,8 @@ export default async function Home() {
                   height={w.image.height}
                 />
               </div>
-              <span className="flex gap-x-3.5 font-medium">
-                <h3 className="text-neutral-800">{w.company}</h3>
-                <h4 className="text-neutral-400">{w.title}</h4>
-              </span>
+              <h3 className="font-medium text-neutral-800">{w.company}</h3>
+              <h4 className="text-neutral-400">{w.title}</h4>
               <span className="text-sm whitespace-nowrap text-neutral-400">
                 {!("end" in w.dates) ? "Now" : format(w.dates.start, "MMM yy")}
               </span>
