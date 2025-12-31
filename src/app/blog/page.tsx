@@ -3,6 +3,7 @@ import { PostsList } from "@/components/posts-list";
 import { Header } from "@/components/header";
 
 export default async function BlogPage() {
+  "use cache";
   // const posts = await getCachedPosts();
   const posts = getPosts();
 
