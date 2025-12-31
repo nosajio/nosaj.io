@@ -46,7 +46,7 @@ export default async function Home() {
 
       {/* Blog posts */}
       <section className="container">
-        <h2 className="font-medium text-neutral-400">Blog</h2>
+        <h2 className="font-medium text-sm text-neutral-400">Blog</h2>
         <PostsList posts={posts} truncate={HOME_POST_COUNT} />
       </section>
 
