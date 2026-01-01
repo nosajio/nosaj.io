@@ -69,13 +69,10 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
   "use cache";
 
   const mdxPath = path.join(BLOG_DIR, `${slug}.mdx`);
-  const mdPath = path.join(BLOG_DIR, `${slug}.md`);
 
   let filePath: string | null = null;
   if (fs.existsSync(mdxPath)) {
     filePath = mdxPath;
-  } else if (fs.existsSync(mdPath)) {
-    filePath = mdPath;
   }
 
   if (!filePath) {

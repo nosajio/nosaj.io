@@ -60,9 +60,7 @@ describe("blog", () => {
 
     it("should strip file extensions from slugs", () => {
       const slugs = getPostSlugs();
-      const hasExtension = slugs.some(
-        (s) => s.endsWith(".mdx") || s.endsWith(".md"),
-      );
+      const hasExtension = slugs.some((s) => s.endsWith(".mdx"));
       assert.strictEqual(hasExtension, false);
     });
   });
