@@ -1,7 +1,9 @@
 import { notFound } from "next/navigation";
 import { getPostBySlug, getPostSlugs } from "@/lib/blog";
 import { Metadata } from "next";
-import { ComponentType } from "react";
+import { format } from "date-fns";
+import { type MDXContent } from "mdx/types";
+import { Header } from "@/components/header";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -23,7 +25,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: post.title,
+    title: `nosaj.io - ${post.title}`,
     description: post.excerpt,
   };
 }
@@ -38,7 +40,7 @@ export default async function PostPage({ params }: PageProps) {
     notFound();
   }
 
-  let PostContent: ComponentType;
+  let PostContent: MDXContent;
   try {
     ({ default: PostContent } = await import(`@/../blog/${slug}.mdx`));
   } catch (error: unknown) {
@@ -47,21 +49,19 @@ export default async function PostPage({ params }: PageProps) {
   }
 
   return (
-    <article>
-      <header>
-        <h1>{post.title}</h1>
-        <time dateTime={post.date}>
-          {new Date(post.date).toLocaleDateString()}
-        </time>
-        {post.tags.length > 0 && (
-          <ul>
-            {post.tags.map((tag) => (
-              <li key={tag}>{tag}</li>
-            ))}
-          </ul>
-        )}
-      </header>
-      <PostContent />
-    </article>
+    <>
+      <Header />
+      <article className="mt-8 flex flex-col gap-y-8">
+        <header className="container">
+          <h1 className="text-xl font-semibold">{post.title}</h1>
+          <time dateTime={post.date} className="text-sm text-neutral-400">
+            {format(post.date, "do MMMM yyyy")}
+          </time>
+        </header>
+        <div className="prose container">
+          <PostContent />
+        </div>
+      </article>
+    </>
   );
 }
