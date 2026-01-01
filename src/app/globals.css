@@ -5,17 +5,19 @@
   --container-max-width: 656px;
 
   --ease-in-out-circ: cubic-bezier(0.85, 0, 0.15, 1);
+  --ease-in-spring: cubic-bezier(0.446, 0.238, 0.154, 1.494);
 
-  --animate-breadcrumb-in: breadcrumb-in both 500ms var(--ease-in-out-circ);
+  --animate-breadcrumb-in: breadcrumb-in both 500ms var(--ease-in-spring);
   @keyframes breadcrumb-in {
     from {
       opacity: 0;
-      transform: translate3d(-0.1rem, 0, 0);
+      transform: translate3d(-5%, 0, 0);
     }
   }
 
   --animate-blur-in:
-    blur-in both 700ms var(--ease-out), fade-in both 700ms var(--ease-out);
+    blur-in both 700ms var(--ease-in-spring),
+    fade-in both 700ms var(--ease-in-out-circ);
   @keyframes blur-in {
     from {
       transform: translate3d(-5%, 0, 0);
@@ -23,7 +25,7 @@
     }
   }
 
-  --animate-fade-in: fade-in both 1s;
+  --animate-fade-in: fade-in both 700ms var(--ease-in-out-circ);
   @keyframes fade-in {
     from {
       opacity: 0;

@@ -10,7 +10,7 @@ export function Header() {
 
   return (
     <header className="flex gap-x-2 p-4">
-      <Link href="/" className="group text-sm font-semibold">
+      <Link href="/" className="group animate-blur-in font-semibold sm:text-sm">
         <span className="text-neutral-600 transition-colors group-hover:text-neutral-900">
           nosaj
         </span>
@@ -32,12 +32,12 @@ function Breadcrumb({ segments }: { segments: string[] }) {
   }
 
   return (
-    <ul className="flex gap-x-1 text-sm" aria-label="breadcrumb">
+    <ul className="flex gap-x-1 sm:text-sm" aria-label="breadcrumb">
       {safeSegments.map((s, i) => (
         <li
           key={`${s}-${i}`}
           className="flex gap-x-1"
-          style={{ "--animation-delay": `${i * 100}ms` } as CSSProperties}
+          style={{ "--animation-delay": `${(i + 2) * 100}ms` } as CSSProperties}
         >
           <Segment segments={safeSegments} index={i} />
         </li>

@@ -1,3 +1,4 @@
+import { cn } from "@/lib/cn";
 import { type Post } from "@/lib/types";
 import { differenceInMonths, format } from "date-fns";
 import { ChevronsUpDownIcon } from "lucide-react";
@@ -6,15 +7,16 @@ import Link from "next/link";
 interface PostsListProps {
   posts: Post[];
   truncate?: number;
+  className?: string;
 }
 
 const now = new Date();
 
-export function PostsList({ posts, truncate }: PostsListProps) {
+export function PostsList({ className, posts, truncate }: PostsListProps) {
   const displayPosts =
     typeof truncate === "number" ? posts.toSpliced(truncate) : posts;
   return (
-    <ul className="mt-3 flex w-full flex-col gap-y-3">
+    <ul className={cn("mt-3 flex w-full flex-col gap-y-3", className)}>
       {displayPosts.map((p) => (
         <li className="font-medium" key={p.slug}>
           <Link
