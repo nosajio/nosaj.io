@@ -49,14 +49,14 @@ export default async function PostPage({ params }: PageProps) {
   return (
     <>
       <Header />
-      <article className="mt-8 flex flex-col gap-y-8">
+      <article className="mt-8 mb-12 flex flex-col gap-y-8">
         <header className="container">
-          <h1 className="text-xl font-semibold">{post.title}</h1>
+          <h1 className="text-2xl font-semibold">{post.title}</h1>
           <time dateTime={post.date} className="text-sm text-neutral-400">
             {format(post.date, "do MMMM yyyy")}
           </time>
         </header>
-        <div className="prose container">
+        <div className="prose prose-neutral prose-headings:font-semibold prose-h1:text-2xl prose-h2:text-xl prose-h3:text-lg prose-h3:font-medium prose-h4:font-medium prose-h4:text-base prose-a:decoration-1 prose-a:underline-offset-2 prose-a:decoration-neutral-300 prose-a:hover:decoration-neutral-950 container">
           <PostContent />
         </div>
       </article>
