@@ -1,25 +1,19 @@
-import Link from "next/link";
-import { getCachedPosts } from "@/lib/blog";
+import { PostsList } from "@/components/posts-list";
+import { Header } from "@/components/header";
+import { getAllPosts } from "@/lib/blog";
 
 export default async function BlogPage() {
-  const posts = await getCachedPosts();
+  "use cache";
+
+  const posts = getAllPosts();
 
   return (
     <main>
-      <h1>Blog</h1>
-      {posts.length === 0 ? (
-        <p>No posts yet.</p>
-      ) : (
-        <ul>
-          {posts.map((post) => (
-            <li key={post.slug}>
-              <Link href={`/blog/${post.slug}`}>{post.title}</Link>
-              <span> - {new Date(post.date).toLocaleDateString()}</span>
-              {post.excerpt && <p>{post.excerpt}</p>}
-            </li>
-          ))}
-        </ul>
-      )}
+      <Header />
+      <section className="container pt-8">
+        <h1 className="text-sm font-medium text-neutral-400">Blog</h1>
+        <PostsList posts={posts} />
+      </section>
     </main>
   );
 }
