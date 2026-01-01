@@ -94,6 +94,19 @@ describe("blog", () => {
       assert.ok(post.content.includes("# Test Post"));
       assert.ok(post.content.includes("This is test content."));
     });
+
+    it("should strip frontmatter from content", () => {
+      const post = getPostBySlug("test-post");
+      assert.ok(post !== null);
+      assert.ok(
+        !post.content.includes("---"),
+        "Content should not contain frontmatter delimiters",
+      );
+      assert.ok(
+        !post.content.includes("title: Test Post"),
+        "Content should not contain frontmatter fields",
+      );
+    });
   });
 
   describe("getAllPosts", () => {
