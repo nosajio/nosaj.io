@@ -32,11 +32,13 @@ function Breadcrumb({ segments }: { segments: string[] }) {
   }
 
   return (
-    <div className="flex gap-x-1 text-sm">
+    <ul className="flex gap-x-1 text-sm" aria-label="breadcrumb">
       {safeSegments.map((s, i) => (
-        <Segment key={s} segments={safeSegments} index={i} />
+        <li key={`${s}-${i}`} className="flex gap-x-1">
+          <Segment segments={safeSegments} index={i} />
+        </li>
       ))}
-    </div>
+    </ul>
   );
 }
 
