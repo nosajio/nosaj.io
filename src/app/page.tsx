@@ -107,7 +107,7 @@ export default async function Home() {
       </header>
 
       {/* Connect */}
-      <section className="animate-blur-in container grid auto-cols-[24px] grid-flow-col gap-x-4 [animation-delay:200ms]">
+      <section className="animate-blur-in container grid auto-cols-[24px] grid-flow-col gap-x-4 [animation-delay:100ms]">
         {socials.map((s) => (
           <Link
             key={s.key}
@@ -121,14 +121,14 @@ export default async function Home() {
       </section>
 
       {/* Blog posts */}
-      <section className="animate-blur-in container [animation-delay:400ms]">
+      <section className="animate-blur-in container [animation-delay:200ms]">
         <h2 className="text-sm font-medium text-neutral-400">Blog</h2>
         <PostsList posts={posts} truncate={HOME_POST_COUNT} />
       </section>
 
       {/* Work */}
       <section className="container">
-        <h2 className="animate-blur-in text-sm font-medium text-neutral-400 [animation-delay:700ms]">
+        <h2 className="animate-blur-in text-sm font-medium text-neutral-400 [animation-delay:300ms]">
           Work
         </h2>
         <ul className="mt-3 grid auto-rows-auto grid-cols-[34px_1fr_max-content] gap-3.5 sm:grid-cols-[34px_max-content_1fr_max-content]">
@@ -142,7 +142,7 @@ export default async function Home() {
               style={
                 {
                   "--background-color": w.image.color,
-                  "--animation-delay": `${700 + i * 100}ms`,
+                  "--animation-delay": `${300 + i * 50}ms`,
                 } as CSSProperties
               }
             >
