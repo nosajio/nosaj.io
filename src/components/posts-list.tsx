@@ -1,5 +1,5 @@
 import { type Post } from "@/lib/types";
-import { format } from "date-fns";
+import { differenceInMonths, format } from "date-fns";
 import { ChevronsUpDownIcon } from "lucide-react";
 import Link from "next/link";
 
@@ -7,6 +7,8 @@ interface PostsListProps {
   posts: Post[];
   truncate?: number;
 }
+
+const now = new Date();
 
 export function PostsList({ posts, truncate }: PostsListProps) {
   const displayPosts =
@@ -21,7 +23,7 @@ export function PostsList({ posts, truncate }: PostsListProps) {
           >
             <span className="title grow">{p.title}</span>
             <span className="shrink text-sm font-normal text-neutral-400">
-              {format(p.date, "MMM yy")}
+              {formatDate(p.date)}
             </span>
           </Link>
         </li>
@@ -39,4 +41,13 @@ export function PostsList({ posts, truncate }: PostsListProps) {
       ) : null}
     </ul>
   );
+}
+
+function formatDate(date: string | Date) {
+  const d = new Date(date);
+  // Don't show the year until the date is a year ago
+  if (differenceInMonths(now, d) >= 11) {
+    return format(d, "dd MMM yy");
+  }
+  return format(d, "dd MMM");
 }

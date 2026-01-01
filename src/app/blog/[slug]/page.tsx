@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { getPostSlugs, getCachedPostBySlug } from "@/lib/blog";
+import { getPostBySlug, getPostSlugs } from "@/lib/blog";
 import { Metadata } from "next";
 import { ComponentType } from "react";
 
@@ -16,7 +16,7 @@ export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const post = await getCachedPostBySlug(slug);
+  const post = getPostBySlug(slug);
 
   if (!post) {
     return { title: "Post Not Found" };
@@ -29,8 +29,10 @@ export async function generateMetadata({
 }
 
 export default async function PostPage({ params }: PageProps) {
+  "use cache";
+
   const { slug } = await params;
-  const post = await getCachedPostBySlug(slug);
+  const post = getPostBySlug(slug);
 
   if (!post) {
     notFound();

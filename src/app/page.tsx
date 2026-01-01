@@ -1,6 +1,6 @@
 import { PostsList } from "@/components/posts-list";
 import { SocialIcon } from "@/components/socials";
-import { getPosts } from "@/lib/blog";
+import { getAllPosts } from "@/lib/blog";
 import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
@@ -93,8 +93,8 @@ const work = [
 
 const HOME_POST_COUNT = 3;
 
-export default async function Home() {
-  const posts = getPosts();
+export default function Home() {
+  const posts = getAllPosts();
 
   return (
     <main className="flex flex-col gap-8">
