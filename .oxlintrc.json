@@ -1,11 +1,6 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": [
-    "nextjs",
-    "unicorn",
-    "typescript",
-    "oxc"
-  ],
+  "plugins": ["nextjs", "unicorn", "typescript", "oxc"],
   "categories": {},
   "rules": {
     "constructor-super": "warn",
