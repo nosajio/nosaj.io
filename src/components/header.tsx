@@ -11,10 +11,10 @@ export function Header() {
   return (
     <header className="flex gap-x-2 p-4">
       <Link href="/" className="group text-sm font-semibold">
-        <span className="text-neutral-600 group-hover:text-neutral-900">
+        <span className="text-neutral-600 transition-colors group-hover:text-neutral-900">
           nosaj
         </span>
-        <span className="text-neutral-300 group-hover:text-neutral-900">
+        <span className="text-neutral-400 transition-colors group-hover:text-neutral-900">
           .io
         </span>
       </Link>
@@ -24,10 +24,17 @@ export function Header() {
 }
 
 function Breadcrumb({ segments }: { segments: string[] }) {
+  // Filter out falsey values
+  const safeSegments = segments.map((s) => s.trim()).filter(Boolean);
+
+  if (safeSegments.length === 0) {
+    return null;
+  }
+
   return (
     <div className="flex gap-x-1 text-sm">
-      {segments.map((s, i) => (
-        <Segment key={s} segments={segments} index={i} />
+      {safeSegments.map((s, i) => (
+        <Segment key={s} segments={safeSegments} index={i} />
       ))}
     </div>
   );
@@ -38,22 +45,21 @@ function Breadcrumb({ segments }: { segments: string[] }) {
  */
 function Segment({ segments, index }: { segments: string[]; index: number }) {
   const segment = segments?.[index];
-  const pathHref = segments.toSpliced(-index).join("/");
-  const isLastSegment = index >= segments.length - 1;
 
   if (!segment) {
     return null;
   }
+
+  const pathHref = `/${segments.toSpliced(index + 1).join("/")}`;
 
   return (
     <>
       <span className="text-neutral-200">/</span>
       <Link
         href={pathHref}
-        className={cn("hover:text-neutral-950", {
-          "text-neutral-700": isLastSegment,
-          "text-neutral-400": !isLastSegment,
-        })}
+        className={cn(
+          "text-neutral-400 transition-colors hover:text-neutral-950",
+        )}
       >
         {segment}
       </Link>
