@@ -77,8 +77,8 @@ describe("blog", () => {
       assert.strictEqual(post.excerpt, "A test post for unit testing");
     });
 
-    it("should return null for non-existent slug", () => {
-      const post = getPostBySlug("does-not-exist");
+    it("should return null for non-existent slug", async () => {
+      const post = await getPostBySlug("does-not-exist");
       assert.strictEqual(post, null);
     });
 
