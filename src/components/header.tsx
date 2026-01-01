@@ -1,8 +1,8 @@
 "use client";
 
-import { cn } from "@/lib/cn";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { CSSProperties } from "react";
 
 export function Header() {
   const pathname = usePathname();
@@ -34,7 +34,11 @@ function Breadcrumb({ segments }: { segments: string[] }) {
   return (
     <ul className="flex gap-x-1 text-sm" aria-label="breadcrumb">
       {safeSegments.map((s, i) => (
-        <li key={`${s}-${i}`} className="flex gap-x-1">
+        <li
+          key={`${s}-${i}`}
+          className="flex gap-x-1"
+          style={{ "--animation-delay": `${i * 100}ms` } as CSSProperties}
+        >
           <Segment segments={safeSegments} index={i} />
         </li>
       ))}
@@ -56,12 +60,12 @@ function Segment({ segments, index }: { segments: string[]; index: number }) {
 
   return (
     <>
-      <span className="text-neutral-200">/</span>
+      <span className="animate-breadcrumb-in text-neutral-200 [animation-delay:var(--animation-delay)]">
+        /
+      </span>
       <Link
         href={pathHref}
-        className={cn(
-          "text-neutral-400 transition-colors hover:text-neutral-950",
-        )}
+        className="animate-breadcrumb-in text-neutral-400 transition-colors [animation-delay:var(--animation-delay)] hover:text-neutral-950"
       >
         {segment}
       </Link>

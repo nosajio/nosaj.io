@@ -98,7 +98,7 @@ export default async function Home() {
 
   return (
     <main className="flex flex-col gap-8">
-      <header className="container mt-20 flex flex-col">
+      <header className="animate-blur-in container mt-20 flex flex-col">
         <h1 className="text-xl font-semibold">Jason Howmans</h1>
         <p className="text-xl text-pretty text-neutral-400">
           Software engineer building Browserbase

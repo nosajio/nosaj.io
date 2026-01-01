@@ -5,6 +5,29 @@
   --container-max-width: 656px;
 
   --ease-in-out-circ: cubic-bezier(0.85, 0, 0.15, 1);
+
+  --animate-breadcrumb-in: breadcrumb-in both 500ms var(--ease-in-out-circ);
+  @keyframes breadcrumb-in {
+    from {
+      opacity: 0;
+      transform: translate3d(-0.1rem, 0, 0);
+    }
+  }
+
+  --animate-blur-in:
+    blur-in both 1s var(--ease-out), fade-in both 1.5s var(--ease-out);
+  @keyframes blur-in {
+    from {
+      filter: blur(20px);
+    }
+  }
+
+  --animate-fade-in: fade-in both 1s;
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+  }
 }
 
 @utility container {
