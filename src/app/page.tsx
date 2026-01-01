@@ -148,8 +148,10 @@ export default function Home() {
               </div>
               <h3 className="font-medium text-neutral-800">{w.company}</h3>
               <h4 className="text-neutral-400">{w.title}</h4>
-              <span className="text-sm whitespace-nowrap text-neutral-400">
-                {!("end" in w.dates) ? "Now" : format(w.dates.start, "MMM yy")}
+              <span className="text-sm whitespace-nowrap text-neutral-300">
+                {!("end" in w.dates)
+                  ? `${format(w.dates.start, "yyyy")} -> Now`
+                  : `${format(w.dates.start, "yyyy")} -> ${format(w.dates.end!, "yyyy")}`}
               </span>
             </li>
           ))}

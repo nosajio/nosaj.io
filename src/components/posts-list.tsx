@@ -22,7 +22,7 @@ export function PostsList({ posts, truncate }: PostsListProps) {
             href={`/blog/${p.slug}`}
           >
             <span className="title grow">{p.title}</span>
-            <span className="shrink text-sm font-normal text-neutral-400">
+            <span className="shrink text-sm font-normal text-neutral-300">
               {formatDate(p.date)}
             </span>
           </Link>
