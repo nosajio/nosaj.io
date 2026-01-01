@@ -128,7 +128,7 @@ export default function Home() {
       {/* Work */}
       <section className="container">
         <h2 className="text-sm font-medium text-neutral-400">Work</h2>
-        <ul className="mt-3 grid auto-rows-auto grid-cols-[34px_max-content_1fr_max-content] gap-3.5">
+        <ul className="mt-3 grid auto-rows-auto grid-cols-[34px_1fr_max-content] gap-3.5 sm:grid-cols-[34px_max-content_1fr_max-content]">
           {work.map((w) => (
             <li
               key={w.key}
@@ -147,7 +147,7 @@ export default function Home() {
                 />
               </div>
               <h3 className="font-medium text-neutral-800">{w.company}</h3>
-              <h4 className="text-neutral-400">{w.title}</h4>
+              <h4 className="hidden text-neutral-400 sm:block">{w.title}</h4>
               <span className="text-sm whitespace-nowrap text-neutral-300">
                 {!("end" in w.dates)
                   ? `${format(w.dates.start, "yyyy")} -> Now`
