@@ -93,8 +93,8 @@ const work = [
 
 const HOME_POST_COUNT = 3;
 
-export default function Home() {
-  const posts = getAllPosts();
+export default async function Home() {
+  const posts = await getAllPosts();
 
   return (
     <main className="flex flex-col gap-8">
