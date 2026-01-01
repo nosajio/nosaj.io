@@ -15,9 +15,10 @@
   }
 
   --animate-blur-in:
-    blur-in both 1s var(--ease-out), fade-in both 1.5s var(--ease-out);
+    blur-in both 1s var(--ease-out), fade-in both 1s var(--ease-out);
   @keyframes blur-in {
     from {
+      transform: translate3d(-5%, 0, 0);
       filter: blur(20px);
     }
   }
