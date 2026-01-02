@@ -1,6 +1,7 @@
 import { PostsList } from "@/components/posts-list";
 import { SocialIcon } from "@/components/socials";
 import { getAllPosts } from "@/lib/blog";
+import { cn } from "@/lib/cn";
 import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
@@ -93,12 +94,12 @@ const work = [
 
 const HOME_POST_COUNT = 3;
 
-export default function Home() {
-  const posts = getAllPosts();
+export default async function Home() {
+  const posts = await getAllPosts();
 
   return (
     <main className="flex flex-col gap-8">
-      <header className="container mt-20 flex flex-col">
+      <header className="animate-blur-in container mt-20 flex flex-col">
         <h1 className="text-xl font-semibold">Jason Howmans</h1>
         <p className="text-xl text-pretty text-neutral-400">
           Software engineer building Browserbase
@@ -106,7 +107,7 @@ export default function Home() {
       </header>
 
       {/* Connect */}
-      <section className="container grid auto-cols-[24px] grid-flow-col gap-x-4">
+      <section className="animate-blur-in container grid auto-cols-[24px] grid-flow-col gap-x-4 [animation-delay:100ms]">
         {socials.map((s) => (
           <Link
             key={s.key}
@@ -120,20 +121,30 @@ export default function Home() {
       </section>
 
       {/* Blog posts */}
-      <section className="container">
+      <section className="animate-blur-in container [animation-delay:200ms]">
         <h2 className="text-sm font-medium text-neutral-400">Blog</h2>
         <PostsList posts={posts} truncate={HOME_POST_COUNT} />
       </section>
 
       {/* Work */}
       <section className="container">
-        <h2 className="text-sm font-medium text-neutral-400">Work</h2>
-        <ul className="mt-3 grid auto-rows-auto grid-cols-[34px_max-content_1fr_max-content] gap-3.5">
-          {work.map((w) => (
+        <h2 className="animate-blur-in text-sm font-medium text-neutral-400 [animation-delay:300ms]">
+          Work
+        </h2>
+        <ul className="mt-3 grid auto-rows-auto grid-cols-[34px_1fr_max-content] gap-3.5 sm:grid-cols-[34px_max-content_1fr_max-content]">
+          {work.map((w, i) => (
             <li
               key={w.key}
-              className="col-span-full grid grid-cols-subgrid items-center"
-              style={{ "--background-color": w.image.color } as CSSProperties}
+              className={cn(
+                "animate-blur-in col-span-full grid grid-cols-subgrid items-center",
+                `[animation-delay:var(--animation-delay)]`,
+              )}
+              style={
+                {
+                  "--background-color": w.image.color,
+                  "--animation-delay": `${300 + i * 50}ms`,
+                } as CSSProperties
+              }
             >
               <div
                 role="img"
@@ -147,7 +158,7 @@ export default function Home() {
                 />
               </div>
               <h3 className="font-medium text-neutral-800">{w.company}</h3>
-              <h4 className="text-neutral-400">{w.title}</h4>
+              <h4 className="hidden text-neutral-400 sm:block">{w.title}</h4>
               <span className="text-sm whitespace-nowrap text-neutral-300">
                 {!("end" in w.dates)
                   ? `${format(w.dates.start, "yyyy")} -> Now`

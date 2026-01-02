@@ -1,3 +1,4 @@
+import { cn } from "@/lib/cn";
 import { type Post } from "@/lib/types";
 import { differenceInMonths, format } from "date-fns";
 import { ChevronsUpDownIcon } from "lucide-react";
@@ -6,22 +7,44 @@ import Link from "next/link";
 interface PostsListProps {
   posts: Post[];
   truncate?: number;
+  className?: string;
 }
 
 const now = new Date();
 
-export function PostsList({ posts, truncate }: PostsListProps) {
+export function PostsList({ className, posts, truncate }: PostsListProps) {
   const displayPosts =
     typeof truncate === "number" ? posts.toSpliced(truncate) : posts;
   return (
-    <ul className="mt-3 flex w-full flex-col gap-y-3">
+    <ul className={cn("mt-3 flex w-full flex-col gap-y-3", className)}>
       {displayPosts.map((p) => (
         <li className="font-medium" key={p.slug}>
-          <Link
-            className="flex [&>.title]:transition-all hover:[&>.title]:translate-x-2"
-            href={`/blog/${p.slug}`}
-          >
-            <span className="title grow">{p.title}</span>
+          <Link className="group relative flex" href={`/blog/${p.slug}`}>
+            <svg
+              className="absolute inset-0 hidden group-hover:inline-block"
+              width="14"
+              height="24"
+              viewBox="0 0 14 13"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1 6.495H12"
+                className="group-hover:animate-scale-in stroke-current"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+              />
+              <path
+                d="M7.505 1L12.505 6.5L7.505 12"
+                className="group-hover:animate-blur-in stroke-current [animation-delay:100ms]"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+              />
+            </svg>
+
+            <span className="grow transition-all will-change-transform group-hover:translate-x-5">
+              {p.title}
+            </span>
             <span className="shrink text-sm font-normal text-neutral-300">
               {formatDate(p.date)}
             </span>

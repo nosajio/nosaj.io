@@ -1,9 +1,44 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @theme {
   --container-max-width: 656px;
 
   --ease-in-out-circ: cubic-bezier(0.85, 0, 0.15, 1);
+  --ease-in-spring: cubic-bezier(0.446, 0.238, 0.154, 1.494);
+
+  --animate-breadcrumb-in: breadcrumb-in both 500ms var(--ease-in-spring);
+  @keyframes breadcrumb-in {
+    from {
+      opacity: 0;
+      transform: translate3d(-5%, 0, 0);
+    }
+  }
+
+  --animate-blur-in:
+    blur-in both 700ms var(--ease-in-spring),
+    fade-in both 700ms var(--ease-in-out-circ);
+  @keyframes blur-in {
+    from {
+      transform: translate3d(-5%, 0, 0);
+      filter: blur(10px);
+    }
+  }
+
+  --animate-fade-in: fade-in both 700ms var(--ease-in-out-circ);
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+  }
+
+  --animate-scale-in: scale-in both 300ms var(--ease-in-out-circ);
+  @keyframes scale-in {
+    from {
+      transform: scaleX(0);
+      opacity: 0;
+    }
+  }
 }
 
 @utility container {

@@ -65,15 +65,14 @@ export function getPostSlugs(): string[] {
 /**
  * Get a single post by slug
  */
-export function getPostBySlug(slug: string): Post | null {
+export async function getPostBySlug(slug: string): Promise<Post | null> {
+  "use cache";
+
   const mdxPath = path.join(BLOG_DIR, `${slug}.mdx`);
-  const mdPath = path.join(BLOG_DIR, `${slug}.md`);
 
   let filePath: string | null = null;
   if (fs.existsSync(mdxPath)) {
     filePath = mdxPath;
-  } else if (fs.existsSync(mdPath)) {
-    filePath = mdPath;
   }
 
   if (!filePath) {
@@ -98,10 +97,12 @@ export function getPostBySlug(slug: string): Post | null {
 /**
  * Get all posts sorted by date (newest first)
  */
-export function getAllPosts(): Post[] {
+export async function getAllPosts(): Promise<Post[]> {
+  "use cache";
+
   const slugs = getPostSlugs();
-  return slugs
-    .map((slug) => getPostBySlug(slug))
+  const posts = await Promise.all(slugs.map((slug) => getPostBySlug(slug)));
+  return posts
     .filter((post): post is Post => post !== null)
     .toSorted(
       (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),

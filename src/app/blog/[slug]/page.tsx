@@ -1,7 +1,9 @@
 import { notFound } from "next/navigation";
 import { getPostBySlug, getPostSlugs } from "@/lib/blog";
 import { Metadata } from "next";
-import { ComponentType } from "react";
+import { format } from "date-fns";
+import { type MDXContent } from "mdx/types";
+import { cn } from "@/lib/cn";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -16,29 +18,27 @@ export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getPostBySlug(slug);
 
   if (!post) {
     return { title: "Post Not Found" };
   }
 
   return {
-    title: post.title,
+    title: `nosaj.io - ${post.title}`,
     description: post.excerpt,
   };
 }
 
 export default async function PostPage({ params }: PageProps) {
-  "use cache";
-
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getPostBySlug(slug);
 
   if (!post) {
     notFound();
   }
 
-  let PostContent: ComponentType;
+  let PostContent: MDXContent;
   try {
     ({ default: PostContent } = await import(`@/../blog/${slug}.mdx`));
   } catch (error: unknown) {
@@ -47,21 +47,26 @@ export default async function PostPage({ params }: PageProps) {
   }
 
   return (
-    <article>
-      <header>
-        <h1>{post.title}</h1>
-        <time dateTime={post.date}>
-          {new Date(post.date).toLocaleDateString()}
+    <article className="mt-8 mb-12 flex flex-col gap-y-8">
+      <header className="container">
+        <h1 className="text-2xl font-semibold">{post.title}</h1>
+        <time dateTime={post.date} className="text-sm text-neutral-400">
+          {format(post.date, "do MMMM yyyy")}
         </time>
-        {post.tags.length > 0 && (
-          <ul>
-            {post.tags.map((tag) => (
-              <li key={tag}>{tag}</li>
-            ))}
-          </ul>
-        )}
       </header>
-      <PostContent />
+      <div
+        className={cn(
+          "prose prose-neutral",
+          "prose-headings:font-semibold",
+          "prose-h1:text-2xl prose-h2:text-xl prose-h3:text-lg",
+          "prose-h3:font-medium prose-h4:font-medium prose-h4:text-base",
+          "prose-a:decoration-1 prose-a:underline-offset-2",
+          "prose-a:decoration-neutral-300 prose-a:hover:decoration-neutral-950",
+          "container",
+        )}
+      >
+        <PostContent />
+      </div>
     </article>
   );
 }
