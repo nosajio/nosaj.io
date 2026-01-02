@@ -39,6 +39,16 @@
       opacity: 0;
     }
   }
+
+  --animate-step-rotate: step-rotate 1s infinite steps(8, jump-start);
+  @keyframes step-rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
 }
 
 @utility container {

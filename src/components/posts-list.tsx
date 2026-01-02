@@ -13,35 +13,19 @@ interface PostsListProps {
 const now = new Date();
 
 export function PostsList({ className, posts, truncate }: PostsListProps) {
+  if (posts.length === 0) {
+    return <EmptyState />;
+  }
+
   const displayPosts =
     typeof truncate === "number" ? posts.toSpliced(truncate) : posts;
+
   return (
     <ul className={cn("mt-3 flex w-full flex-col gap-y-3", className)}>
       {displayPosts.map((p) => (
         <li className="font-medium" key={p.slug}>
           <Link className="group relative flex" href={`/blog/${p.slug}`}>
-            <svg
-              className="absolute inset-0 hidden group-hover:inline-block"
-              width="14"
-              height="24"
-              viewBox="0 0 14 13"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M1 6.495H12"
-                className="group-hover:animate-scale-in stroke-current"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-              />
-              <path
-                d="M7.505 1L12.505 6.5L7.505 12"
-                className="group-hover:animate-blur-in stroke-current [animation-delay:100ms]"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-              />
-            </svg>
-
+            <ArrowIcon />
             <span className="grow transition-all will-change-transform group-hover:translate-x-5">
               {p.title}
             </span>
@@ -63,6 +47,43 @@ export function PostsList({ className, posts, truncate }: PostsListProps) {
         </li>
       ) : null}
     </ul>
+  );
+}
+
+function ArrowIcon() {
+  return (
+    <svg
+      className="absolute inset-0 hidden group-hover:inline-block"
+      width="14"
+      height="24"
+      viewBox="0 0 14 13"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M1 6.495H12"
+        className="group-hover:animate-scale-in stroke-current"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+      <path
+        d="M7.505 1L12.505 6.5L7.505 12"
+        className="group-hover:animate-blur-in stroke-current [animation-delay:100ms]"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+function EmptyState() {
+  return (
+    <div className="mt-3 flex items-center gap-x-3 text-sm text-neutral-500">
+      <div className="animate-step-rotate flex size-3 items-center justify-center">
+        <div className="h-3 w-px bg-neutral-400" />
+      </div>
+      Blog under construction...
+    </div>
   );
 }
 
