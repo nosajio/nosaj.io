@@ -11,6 +11,11 @@ interface PageProps {
 
 export async function generateStaticParams() {
   const slugs = getPostSlugs();
+  // generateStaticParams cannot return an empty array, so add a default not
+  // found value
+  if (slugs.length === 0) {
+    return [{ slug: "not-found" }];
+  }
   return slugs.map((slug) => ({ slug }));
 }
 
