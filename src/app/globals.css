@@ -31,6 +31,14 @@
       opacity: 0;
     }
   }
+
+  --animate-scale-in: scale-in both 300ms var(--ease-in-out-circ);
+  @keyframes scale-in {
+    from {
+      transform: scaleX(0);
+      opacity: 0;
+    }
+  }
 }
 
 @utility container {
