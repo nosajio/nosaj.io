@@ -53,7 +53,7 @@ export default async function PostPage({ params }: PageProps) {
 
   return (
     <article className="mt-8 mb-12 flex flex-col gap-y-8">
-      <header className="container">
+      <header className="animate-blur-in-up container">
         <h1 className="text-2xl font-semibold">{post.title}</h1>
         <time dateTime={post.date} className="text-secondary text-sm">
           {format(post.date, "do MMMM yyyy")}
@@ -61,6 +61,7 @@ export default async function PostPage({ params }: PageProps) {
       </header>
       <div
         className={cn(
+          "animate-blur-in-up [animation-delay:150ms] [animation-duration:1.2s]",
           "prose prose-neutral dark:prose-invert",
           "prose-headings:font-semibold",
           "prose-h1:text-2xl prose-h2:text-xl prose-h3:text-lg",

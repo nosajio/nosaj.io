@@ -32,6 +32,16 @@
     }
   }
 
+  --animate-blur-in-up:
+    blur-in-up both 700ms var(--ease-in-spring),
+    fade-in both 700ms var(--ease-in-out-circ);
+  @keyframes blur-in-up {
+    from {
+      transform: translate3d(0, clamp(10px, 5%, 20px), 0);
+      filter: blur(10px);
+    }
+  }
+
   --animate-fade-in: fade-in both 700ms var(--ease-in-out-circ);
   @keyframes fade-in {
     from {
