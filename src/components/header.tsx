@@ -10,13 +10,11 @@ export function Header() {
 
   return (
     <header className="flex gap-x-2 p-4">
-      <Link href="/" className="group animate-blur-in font-semibold sm:text-sm">
-        <span className="text-neutral-600 transition-colors group-hover:text-neutral-900">
-          nosaj
-        </span>
-        <span className="text-neutral-400 transition-colors group-hover:text-neutral-900">
-          .io
-        </span>
+      <Link
+        href="/"
+        className="animate-blur-in hover:text-foreground font-semibold text-neutral-500 transition-colors sm:text-sm dark:text-neutral-400"
+      >
+        nosaj.io
       </Link>
       <Breadcrumb segments={segments} />
     </header>
@@ -60,12 +58,12 @@ function Segment({ segments, index }: { segments: string[]; index: number }) {
 
   return (
     <>
-      <span className="animate-breadcrumb-in text-neutral-200 [animation-delay:var(--animation-delay)]">
+      <span className="animate-breadcrumb-in text-neutral-200 [animation-delay:var(--animation-delay)] dark:text-neutral-700">
         /
       </span>
       <Link
         href={pathHref}
-        className="animate-breadcrumb-in text-neutral-400 transition-colors [animation-delay:var(--animation-delay)] hover:text-neutral-950"
+        className="animate-breadcrumb-in text-secondary hover:text-foreground transition-colors [animation-delay:var(--animation-delay)]"
       >
         {segment}
       </Link>

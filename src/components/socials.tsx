@@ -5,7 +5,7 @@ interface SocialIconProps extends React.ComponentProps<"svg"> {
 
 export function SocialIcon({
   icon,
-  fill = "#0A0A0A",
+  fill = "currentColor",
   ...svgProps
 }: SocialIconProps) {
   const getIconPaths = () => {

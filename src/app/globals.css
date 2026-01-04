@@ -4,6 +4,13 @@
 @theme {
   --container-max-width: 656px;
 
+  /* Dark / light mode theming */
+  --color-background: #ffffff;
+  --color-foreground: var(--color-neutral-950);
+  --color-secondary: var(--color-neutral-400);
+  --color-muted: var(--color-neutral-300);
+
+  /* Animations */
   --ease-in-out-circ: cubic-bezier(0.85, 0, 0.15, 1);
   --ease-in-spring: cubic-bezier(0.446, 0.238, 0.154, 1.494);
 
@@ -21,6 +28,16 @@
   @keyframes blur-in {
     from {
       transform: translate3d(-5%, 0, 0);
+      filter: blur(10px);
+    }
+  }
+
+  --animate-blur-in-up:
+    blur-in-up both 700ms var(--ease-in-spring),
+    fade-in both 700ms var(--ease-in-out-circ);
+  @keyframes blur-in-up {
+    from {
+      transform: translate3d(0, clamp(10px, 5%, 20px), 0);
       filter: blur(10px);
     }
   }
@@ -69,6 +86,16 @@
   );
 }
 
-body {
-  color: var(--color-neutral-950);
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: var(--color-neutral-900);
+    --color-foreground: var(--color-neutral-100);
+    --color-secondary: var(--color-neutral-600);
+    --color-muted: var(--color-neutral-700);
+  }
+}
+
+:root {
+  background: var(--color-background);
+  color: var(--color-foreground);
 }
