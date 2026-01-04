@@ -7,7 +7,7 @@ export default async function BlogPage() {
   return (
     <main>
       <section className="container pt-8">
-        <h1 className="animate-blur-in text-sm font-medium text-secondary">
+        <h1 className="animate-blur-in text-secondary text-sm font-medium">
           Blog
         </h1>
         <PostsList

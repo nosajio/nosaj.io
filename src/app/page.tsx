@@ -113,7 +113,7 @@ export default async function Home() {
             key={s.key}
             href={s.href}
             target="_blank"
-            className="dark:hover:bg-neutral-800 hover:bg-neutral-200 flex size-6 items-center justify-center rounded-sm"
+            className="flex size-6 items-center justify-center rounded-sm hover:bg-neutral-200 dark:hover:bg-neutral-800"
           >
             {s.icon}
           </Link>
