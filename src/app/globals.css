@@ -5,7 +5,7 @@
   --container-max-width: 656px;
 
   /* Dark / light mode theming */
-  --color-bg: #ffffff;
+  --color-background: #ffffff;
   --color-foreground: var(--color-neutral-950);
   --color-secondary: var(--color-neutral-400);
   --color-muted: var(--color-neutral-300);
