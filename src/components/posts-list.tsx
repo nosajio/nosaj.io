@@ -39,7 +39,7 @@ export function PostsList({ className, posts, truncate }: PostsListProps) {
         <li>
           <Link
             href="/blog"
-            className="ease-in-out-circ text-secondary float-left flex items-center gap-x-1 rounded-sm py-0.5 pr-1.5 pl-0.5 text-sm font-medium hover:bg-neutral-100 hover:text-neutral-500"
+            className="ease-in-out-circ text-secondary float-left flex items-center gap-x-1 rounded-sm py-0.5 pr-1.5 pl-0.5 text-sm font-medium hover:bg-neutral-100 hover:text-neutral-500 dark:hover:bg-neutral-800 dark:hover:text-neutral-400"
           >
             <ChevronsUpDownIcon size={16} />
             <span>More</span>
