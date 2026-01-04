@@ -37,8 +37,8 @@ const work = [
   {
     key: "sprinterview",
     image: {
-      width: 24,
-      height: 23,
+      width: 18,
+      height: 17,
       color: "#000000",
     },
     company: "Sprinterview",
