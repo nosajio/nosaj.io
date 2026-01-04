@@ -101,7 +101,7 @@ export default async function Home() {
     <main className="flex flex-col gap-8">
       <header className="animate-blur-in container mt-20 flex flex-col">
         <h1 className="text-xl font-semibold">Jason Howmans</h1>
-        <p className="text-xl text-pretty text-secondary">
+        <p className="text-secondary text-xl text-pretty">
           Software engineer building Browserbase
         </p>
       </header>
@@ -113,7 +113,7 @@ export default async function Home() {
             key={s.key}
             href={s.href}
             target="_blank"
-            className="flex size-6 items-center justify-center rounded-sm border border-transparent hover:border-secondary"
+            className="dark:hover:bg-neutral-800 hover:bg-neutral-200 flex size-6 items-center justify-center rounded-sm"
           >
             {s.icon}
           </Link>
@@ -122,13 +122,13 @@ export default async function Home() {
 
       {/* Blog posts */}
       <section className="animate-blur-in container [animation-delay:200ms]">
-        <h2 className="text-sm font-medium text-secondary">Blog</h2>
+        <h2 className="text-secondary text-sm font-medium">Blog</h2>
         <PostsList posts={posts} truncate={HOME_POST_COUNT} />
       </section>
 
       {/* Work */}
       <section className="container">
-        <h2 className="animate-blur-in text-sm font-medium text-secondary [animation-delay:300ms]">
+        <h2 className="animate-blur-in text-secondary text-sm font-medium [animation-delay:300ms]">
           Work
         </h2>
         <ul className="mt-3 grid auto-rows-auto grid-cols-[34px_1fr_max-content] gap-3.5 sm:grid-cols-[34px_max-content_1fr_max-content]">
@@ -157,9 +157,11 @@ export default async function Home() {
                   height={w.image.height}
                 />
               </div>
-              <h3 className="font-medium text-neutral-800 dark:text-neutral-300">{w.company}</h3>
-              <h4 className="hidden text-secondary sm:block">{w.title}</h4>
-              <span className="text-sm whitespace-nowrap text-muted">
+              <h3 className="font-medium text-neutral-800 dark:text-neutral-300">
+                {w.company}
+              </h3>
+              <h4 className="text-secondary hidden sm:block">{w.title}</h4>
+              <span className="text-muted text-sm whitespace-nowrap">
                 {!("end" in w.dates)
                   ? `${format(w.dates.start, "yyyy")} -> Now`
                   : `${format(w.dates.start, "yyyy")} -> ${format(w.dates.end!, "yyyy")}`}
