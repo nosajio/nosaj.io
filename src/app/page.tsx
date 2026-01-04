@@ -157,7 +157,7 @@ export default async function Home() {
                   height={w.image.height}
                 />
               </div>
-              <h3 className="font-medium text-neutral-800">{w.company}</h3>
+              <h3 className="font-medium text-neutral-800 dark:text-neutral-300">{w.company}</h3>
               <h4 className="hidden text-secondary sm:block">{w.title}</h4>
               <span className="text-sm whitespace-nowrap text-muted">
                 {!("end" in w.dates)

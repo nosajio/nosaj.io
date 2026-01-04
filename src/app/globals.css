@@ -76,6 +76,16 @@
   );
 }
 
-body {
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: var(--color-neutral-900);
+    --color-foreground: var(--color-neutral-100);
+    --color-secondary: var(--color-neutral-600);
+    --color-muted: var(--color-neutral-700);
+  }
+}
+
+:root {
+  background: var(--color-background);
   color: var(--color-foreground);
 }
