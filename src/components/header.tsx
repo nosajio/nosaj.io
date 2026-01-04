@@ -14,7 +14,7 @@ export function Header() {
         <span className="text-neutral-600 transition-colors group-hover:text-neutral-900">
           nosaj
         </span>
-        <span className="text-neutral-400 transition-colors group-hover:text-neutral-900">
+        <span className="text-secondary transition-colors group-hover:text-neutral-900">
           .io
         </span>
       </Link>
@@ -65,7 +65,7 @@ function Segment({ segments, index }: { segments: string[]; index: number }) {
       </span>
       <Link
         href={pathHref}
-        className="animate-breadcrumb-in text-neutral-400 transition-colors [animation-delay:var(--animation-delay)] hover:text-neutral-950"
+        className="animate-breadcrumb-in text-secondary transition-colors [animation-delay:var(--animation-delay)] hover:text-foreground"
       >
         {segment}
       </Link>

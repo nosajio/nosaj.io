@@ -4,6 +4,13 @@
 @theme {
   --container-max-width: 656px;
 
+  /* Dark / light mode theming */
+  --color-bg: #ffffff;
+  --color-foreground: var(--color-neutral-950);
+  --color-secondary: var(--color-neutral-400);
+  --color-muted: var(--color-neutral-300);
+
+  /* Animations */
   --ease-in-out-circ: cubic-bezier(0.85, 0, 0.15, 1);
   --ease-in-spring: cubic-bezier(0.446, 0.238, 0.154, 1.494);
 
@@ -70,5 +77,5 @@
 }
 
 body {
-  color: var(--color-neutral-950);
+  color: var(--color-foreground);
 }

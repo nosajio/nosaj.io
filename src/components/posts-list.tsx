@@ -29,7 +29,7 @@ export function PostsList({ className, posts, truncate }: PostsListProps) {
             <span className="grow transition-all will-change-transform group-hover:translate-x-5">
               {p.title}
             </span>
-            <span className="shrink text-sm font-normal text-neutral-300">
+            <span className="shrink text-sm font-normal text-muted">
               {formatDate(p.date)}
             </span>
           </Link>
@@ -39,7 +39,7 @@ export function PostsList({ className, posts, truncate }: PostsListProps) {
         <li>
           <Link
             href="/blog"
-            className="ease-in-out-circ float-left flex items-center gap-x-1 rounded-sm py-0.5 pr-1.5 pl-0.5 text-sm font-medium text-neutral-400 hover:bg-neutral-100 hover:text-neutral-500"
+            className="ease-in-out-circ float-left flex items-center gap-x-1 rounded-sm py-0.5 pr-1.5 pl-0.5 text-sm font-medium text-secondary hover:bg-neutral-100 hover:text-neutral-500"
           >
             <ChevronsUpDownIcon size={16} />
             <span>More</span>
@@ -80,7 +80,7 @@ function EmptyState() {
   return (
     <div className="mt-3 flex items-center gap-x-3 text-sm text-neutral-500">
       <div className="animate-step-rotate flex size-3 items-center justify-center">
-        <div className="h-3 w-px bg-neutral-400" />
+        <div className="h-3 w-px bg-secondary" />
       </div>
       Blog under construction...
     </div>

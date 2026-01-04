@@ -101,7 +101,7 @@ export default async function Home() {
     <main className="flex flex-col gap-8">
       <header className="animate-blur-in container mt-20 flex flex-col">
         <h1 className="text-xl font-semibold">Jason Howmans</h1>
-        <p className="text-xl text-pretty text-neutral-400">
+        <p className="text-xl text-pretty text-secondary">
           Software engineer building Browserbase
         </p>
       </header>
@@ -113,7 +113,7 @@ export default async function Home() {
             key={s.key}
             href={s.href}
             target="_blank"
-            className="flex size-6 items-center justify-center rounded-sm border border-transparent hover:border-neutral-400"
+            className="flex size-6 items-center justify-center rounded-sm border border-transparent hover:border-secondary"
           >
             {s.icon}
           </Link>
@@ -122,13 +122,13 @@ export default async function Home() {
 
       {/* Blog posts */}
       <section className="animate-blur-in container [animation-delay:200ms]">
-        <h2 className="text-sm font-medium text-neutral-400">Blog</h2>
+        <h2 className="text-sm font-medium text-secondary">Blog</h2>
         <PostsList posts={posts} truncate={HOME_POST_COUNT} />
       </section>
 
       {/* Work */}
       <section className="container">
-        <h2 className="animate-blur-in text-sm font-medium text-neutral-400 [animation-delay:300ms]">
+        <h2 className="animate-blur-in text-sm font-medium text-secondary [animation-delay:300ms]">
           Work
         </h2>
         <ul className="mt-3 grid auto-rows-auto grid-cols-[34px_1fr_max-content] gap-3.5 sm:grid-cols-[34px_max-content_1fr_max-content]">
@@ -158,8 +158,8 @@ export default async function Home() {
                 />
               </div>
               <h3 className="font-medium text-neutral-800">{w.company}</h3>
-              <h4 className="hidden text-neutral-400 sm:block">{w.title}</h4>
-              <span className="text-sm whitespace-nowrap text-neutral-300">
+              <h4 className="hidden text-secondary sm:block">{w.title}</h4>
+              <span className="text-sm whitespace-nowrap text-muted">
                 {!("end" in w.dates)
                   ? `${format(w.dates.start, "yyyy")} -> Now`
                   : `${format(w.dates.start, "yyyy")} -> ${format(w.dates.end!, "yyyy")}`}
